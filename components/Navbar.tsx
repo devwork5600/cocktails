@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "L'Univers", href: "/#universe" },
-  { name: "La Carte", href: "/la-carte" },
+  { name: "La Carte", href: "/cocktails" },
   { name: "Privatisation", href: "/#privatization" },
   { name: "Contact", href: "/#contact" },
 ];
