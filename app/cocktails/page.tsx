@@ -70,7 +70,7 @@ const allItems = categories.flatMap(cat => cat.items);
 
 export default function LaCartePage() {
   const { x, y } = useMouse();
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -96,26 +96,28 @@ export default function LaCartePage() {
             }}
             className="hidden lg:block overflow-hidden rounded-xl border border-primary/20 shadow-2xl bg-surface-container"
           >
-            <motion.div 
-              className="relative w-full h-full"
-              animate={{ y: hoveredIndex !== null ? -hoveredIndex * 200 : 0 }}
-              transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.6 }}
-            >
-              {allItems.map((item, idx) => (
-                <div key={`${item.name}-${idx}`} className="relative w-50 h-50">
-                  <Image
-                    src={item.image || "/cocktail-2.png"}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-center">
-                    <p className="text-primary font-serif italic text-lg leading-tight">{item.name}</p>
+            <div className="relative w-full h-full overflow-hidden">
+              <motion.div 
+                className="absolute inset-0"
+                animate={{ y: -hoveredIndex * 200 }}
+                transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.4 }}
+              >
+                {allItems.map((item, idx) => (
+                  <div key={`${item.name}-${idx}`} className="relative w-[200px] h-[200px]">
+                    <Image
+                      src={item.image || "/cocktail-2.png"}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 text-center">
+                      <p className="text-primary font-serif italic text-lg leading-tight">{item.name}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -134,7 +136,12 @@ export default function LaCartePage() {
         </section>
 
         {/* Menu Content */}
-        <div className="max-w-4xl mx-auto px-6">
+        <div 
+          className="max-w-4xl mx-auto px-6"
+          onMouseLeave={() => {
+            setIsActive(false);
+          }}
+        >
           <div className="flex flex-col gap-24">
             {categories.map((category, catIdx) => {
               // Calculate starting global index for this category
@@ -149,12 +156,7 @@ export default function LaCartePage() {
                   className="flex flex-col gap-12 lg:cursor-none"
                   onMouseEnter={() => {
                     setIsActive(true);
-                    // Default to first item of category if none hovered yet
-                    if (hoveredIndex === null) setHoveredIndex(startIndex);
-                  }}
-                  onMouseLeave={() => {
-                    setIsActive(false);
-                    setHoveredIndex(null);
+                    setHoveredIndex(startIndex);
                   }}
                 >
                   <div className="flex items-center gap-6">
@@ -173,7 +175,10 @@ export default function LaCartePage() {
                         <div 
                           key={item.name} 
                           className="group flex flex-col gap-4"
-                          onMouseEnter={() => setHoveredIndex(globalIdx)}
+                          onMouseEnter={(e) => {
+                            e.stopPropagation();
+                            setHoveredIndex(globalIdx);
+                          }}
                         >
                           {/* Mobile-only Cocktail Image */}
                           <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
