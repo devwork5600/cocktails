@@ -144,7 +144,19 @@ export default function LaCartePage() {
               }
 
               return (
-                <div key={category.name} className="flex flex-col gap-12">
+                <div 
+                  key={category.name} 
+                  className="flex flex-col gap-12 lg:cursor-none"
+                  onMouseEnter={() => {
+                    setIsActive(true);
+                    // Default to first item of category if none hovered yet
+                    if (hoveredIndex === null) setHoveredIndex(startIndex);
+                  }}
+                  onMouseLeave={() => {
+                    setIsActive(false);
+                    setHoveredIndex(null);
+                  }}
+                >
                   <div className="flex items-center gap-6">
                     <h2 className="text-label-caps text-primary tracking-[0.4em] whitespace-nowrap">
                       {category.name}
@@ -152,14 +164,7 @@ export default function LaCartePage() {
                     <div className="h-px w-full bg-outline-variant/30" />
                   </div>
 
-                  <div 
-                    className="flex flex-col gap-16 lg:cursor-none"
-                    onMouseEnter={() => setIsActive(true)}
-                    onMouseLeave={() => {
-                      setIsActive(false);
-                      setHoveredIndex(null);
-                    }}
-                  >
+                  <div className="flex flex-col gap-16">
                     {category.items.map((item, itemIdx) => {
                       const globalIdx = startIndex + itemIdx;
                       const displayIndex = (globalIdx + 1).toString().padStart(2, "0");
