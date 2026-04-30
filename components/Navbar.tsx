@@ -46,7 +46,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300"
+                className="text-label-caps text-on-surface-variant underline-effect"
               >
                 {link.name}
               </Link>
@@ -58,10 +58,21 @@ export function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden text-primary p-2"
+            className="lg:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 z-50 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <motion.span
+              animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+              className="w-6 h-0.5 bg-primary block rounded-full"
+            />
+            <motion.span
+              animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="w-6 h-0.5 bg-primary block rounded-full"
+            />
+            <motion.span
+              animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              className="w-6 h-0.5 bg-primary block rounded-full"
+            />
           </button>
         </div>
       </nav>

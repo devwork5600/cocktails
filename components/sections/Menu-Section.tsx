@@ -41,7 +41,7 @@ export function MenuSection() {
                 conçue avec des spiritueux rares et des ingrédients sourcés avec le plus grand soin.
               </p>
             </div>
-            <Link href="/la-carte" className="gold-border text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all hidden md:block">
+            <Link href="/cocktails" className="gold-border text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all hidden md:block">
               Voir la carte complète
             </Link>
           </div>
