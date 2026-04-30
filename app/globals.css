@@ -96,6 +96,14 @@
     letter-spacing: 0.15em;
   }
 
+  .glass {
+    background: rgba(22, 19, 11, 0.45);
+    backdrop-filter: blur(60px) saturate(180%);
+    -webkit-backdrop-filter: blur(60px) saturate(180%);
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+  }
+
 
 
   .gold-gradient {

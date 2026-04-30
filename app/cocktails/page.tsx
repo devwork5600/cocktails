@@ -1,6 +1,3 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-
 const categories = [
   {
     name: "Signatures",
@@ -58,8 +55,6 @@ const categories = [
 export default function LaCartePage() {
   return (
     <div className="flex flex-col min-h-screen bg-surface">
-      <Navbar />
-      
       <main className="grow pt-32 pb-24">
         {/* Header */}
         <section className="mb-24">
