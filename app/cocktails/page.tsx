@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import useMouse from "@/hook/useMouse";
 
 const categories = [
   {
@@ -8,19 +13,22 @@ const categories = [
         name: "L'Or Liquide",
         ingredients: "Bourbon premium, Infusion de Safran, Miel d'Acacia, Bitters aromatiques, Écorce d'orange.",
         description: "Un élixir puissant et velouté aux reflets dorés.",
-        price: "22€"
+        price: "22€",
+        image: "/cocktail-1.png"
       },
       {
         name: "Élixir de Minuit",
         ingredients: "Cognac VSOP, Liqueur de Framboise Noire, Citron Jaune, Sirop de Vanille fumé au bois de chêne.",
         description: "Une expérience fumée et mystérieuse.",
-        price: "20€"
+        price: "20€",
+        image: "/cocktail-2.png"
       },
       {
         name: "Sillage d'Orient",
         ingredients: "Gin infusé au Thé Earl Grey, Sirop de Rose, Jus de Lychee, Blanc d'œuf, Pétales séchés.",
         description: "Floral, aérien et d'une élégance rare.",
-        price: "19€"
+        price: "19€",
+        image: "/cocktail-3.png"
       }
     ]
   },
@@ -31,13 +39,15 @@ const categories = [
         name: "Old Fashioned Studio",
         ingredients: "Rye Whiskey, Sirop d'Érable fumé, Bitters de Noix, Zeste de Pamplemousse.",
         description: "La force du whiskey équilibrée par la douceur du bois.",
-        price: "18€"
+        price: "18€",
+        image: "/signature-cocktail.png"
       },
       {
         name: "Negroni Doré",
         ingredients: "Gin Sec, Vermouth Rouge infusé au Cacao, Campari, Poussière d'Or comestible.",
         description: "L'amertume classique avec une touche de luxe.",
-        price: "21€"
+        price: "21€",
+        image: "/cocktail-6.png"
       }
     ]
   },
@@ -48,15 +58,56 @@ const categories = [
         name: "L'Innocence",
         ingredients: "Distillat de Genièvre 0%, Concombre, Menthe Fraîche, Eau Tonique premium.",
         description: "Fraîcheur absolue sans compromis.",
-        price: "14€"
+        price: "14€",
+        image: "/cocktail-2.png"
       }
     ]
   }
 ];
 
 export default function LaCartePage() {
+  const { x, y } = useMouse();
+  const [hoveredItem, setHoveredItem] = useState<any>(null);
+  let globalItemIndex = 0;
+
   return (
     <div className="flex flex-col min-h-screen bg-surface">
+      <AnimatePresence>
+        {hoveredItem && (
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            style={{
+              position: "fixed",
+              left: x,
+              top: y,
+              width: 200,
+              height: 200,
+              pointerEvents: "none",
+              zIndex: 100,
+              x: "-50%",
+              y: "-50%",
+            }}
+            className="hidden lg:block overflow-hidden rounded-xl border border-primary/20 shadow-2xl bg-surface-container"
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={hoveredItem.image || "/cocktail-2.png"}
+                alt={hoveredItem.name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <p className="text-primary font-serif italic text-lg">{hoveredItem.name}</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <main className="grow pt-32 pb-24">
         {/* Header */}
         <section className="mb-24">
@@ -83,38 +134,53 @@ export default function LaCartePage() {
                 </div>
 
                 <div className="flex flex-col gap-16">
-                  {category.items.map((item) => (
-                    <div key={item.name} className="group flex flex-col gap-4">
-                      {/* Mobile-only Cocktail Image */}
-                      <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
-                        <Image
-                          src="/cocktail-2.png"
-                          alt={item.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
-                      </div>
-
-                      <div className="flex flex-col gap-2">
-                        <div className="flex justify-between items-baseline gap-4">
-                          <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                            {item.name}
-                          </h3>
-                          <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
-                          <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                            {item.price}
-                          </span>
+                  {category.items.map((item) => {
+                    globalItemIndex++;
+                    const displayIndex = globalItemIndex.toString().padStart(2, "0");
+                    
+                    return (
+                      <div 
+                        key={item.name} 
+                        className="group flex flex-col gap-4 lg:cursor-none"
+                        onMouseEnter={() => setHoveredItem(item)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                      >
+                        {/* Mobile-only Cocktail Image */}
+                        <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
+                          <Image
+                            src={item.image || "/cocktail-2.png"}
+                            alt={item.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
                         </div>
-                        <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
-                          {item.description}
-                        </p>
-                        <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
-                          {item.ingredients}
-                        </p>
+
+                        <div className="flex flex-col gap-2">
+                          <div className="flex justify-between items-baseline gap-4">
+                            <div className="flex items-baseline gap-4">
+                              <span className="text-primary font-sans text-sm font-medium opacity-50 group-hover:opacity-100 transition-opacity">
+                                {displayIndex}
+                              </span>
+                              <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                                {item.name}
+                              </h3>
+                            </div>
+                            <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
+                            <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                              {item.price}
+                            </span>
+                          </div>
+                          <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
+                            {item.description}
+                          </p>
+                          <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
+                            {item.ingredients}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}
