@@ -13,22 +13,29 @@ export function Footer() {
               <span className="font-serif text-3xl tracking-tight text-primary">
                 L&apos;Élixir Doré
               </span>
-              <span className="text-[12px] font-sans tracking-[0.3em] uppercase text-on-surface-variant -mt-1 ml-0.5">
-                Studio
-              </span>
             </Link>
             <p className="text-body-md text-on-surface-variant/70 leading-relaxed font-light">
-              Un lieu hors du temps, où l&apos;élégance du passé rencontre l&apos;audace du présent. 
-              Une expérience réservée à ceux qui savent chercher l&apos;exceptionnel.
+              Un lieu hors du temps, où l&apos;élégance du passé rencontre
+              l&apos;audace du présent. Une expérience réservée à ceux qui
+              savent chercher l&apos;exceptionnel.
             </p>
             <div className="flex gap-4 mt-2">
-              <Link href="#" className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border">
+              <Link
+                href="#"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+              >
                 <Camera size={20} />
               </Link>
-              <Link href="#" className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border">
+              <Link
+                href="#"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+              >
                 <MessageCircle size={20} />
               </Link>
-              <Link href="#" className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border">
+              <Link
+                href="#"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+              >
                 <Mail size={20} />
               </Link>
             </div>
@@ -36,11 +43,22 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">Navigation</h4>
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+              Navigation
+            </h4>
             <ul className="flex flex-col gap-4">
-              {["L'Univers", "La Carte", "Privatisation", "Événements", "Presse"].map((link) => (
+              {[
+                "L'Univers",
+                "La Carte",
+                "Privatisation",
+                "Événements",
+                "Presse",
+              ].map((link) => (
                 <li key={link}>
-                  <Link href="#" className="text-body-md text-on-surface-variant hover:text-primary transition-colors font-light">
+                  <Link
+                    href="#"
+                    className="text-body-md text-on-surface-variant hover:text-primary transition-colors font-light"
+                  >
                     {link}
                   </Link>
                 </li>
@@ -50,17 +68,26 @@ export function Footer() {
 
           {/* Contact */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">Contact</h4>
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+              Contact
+            </h4>
             <ul className="flex flex-col gap-6">
               <li className="flex gap-4 items-start text-on-surface-variant font-light group">
-                <MapPin className="text-primary shrink-0 transition-transform group-hover:scale-110" size={20} />
+                <MapPin
+                  className="text-primary shrink-0 transition-transform group-hover:scale-110"
+                  size={20}
+                />
                 <span className="text-body-md leading-relaxed">
-                  12 Rue de l&apos;Émeraude,<br />
+                  12 Rue de l&apos;Émeraude,
+                  <br />
                   75001 Paris, France
                 </span>
               </li>
               <li className="flex gap-4 items-center text-on-surface-variant font-light group">
-                <Phone className="text-primary shrink-0 transition-transform group-hover:scale-110" size={20} />
+                <Phone
+                  className="text-primary shrink-0 transition-transform group-hover:scale-110"
+                  size={20}
+                />
                 <span className="text-body-md">+33 (0) 1 23 45 67 89</span>
               </li>
             </ul>
@@ -68,7 +95,9 @@ export function Footer() {
 
           {/* Hours */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">Horaires</h4>
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+              Horaires
+            </h4>
             <ul className="flex flex-col gap-3 text-body-md font-light text-on-surface-variant">
               <li className="flex justify-between border-b border-outline-variant/20 pb-2">
                 <span>Mardi - Jeudi</span>
@@ -92,11 +121,21 @@ export function Footer() {
 
         <div className="border-t border-outline-variant/30 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-sans font-medium">
-            © 2026 L&apos;Élixir Doré Studio. Tous droits réservés.
+            © 2026 L&apos;Élixir Doré. Tous droits réservés.
           </p>
           <div className="flex gap-8">
-            <Link href="#" className="text-[10px] text-on-surface-variant hover:text-on-surface uppercase tracking-widest transition-colors">Mentions Légales</Link>
-            <Link href="#" className="text-[10px] text-on-surface-variant hover:text-on-surface uppercase tracking-widest transition-colors">Confidentialité</Link>
+            <Link
+              href="#"
+              className="text-[10px] text-on-surface-variant hover:text-on-surface uppercase tracking-widest transition-colors"
+            >
+              Mentions Légales
+            </Link>
+            <Link
+              href="#"
+              className="text-[10px] text-on-surface-variant hover:text-on-surface uppercase tracking-widest transition-colors"
+            >
+              Confidentialité
+            </Link>
           </div>
         </div>
       </div>

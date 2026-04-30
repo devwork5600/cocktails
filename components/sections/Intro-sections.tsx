@@ -54,8 +54,8 @@ const IntroSections = () => {
               <motion.div
                 initial={{ x: "0%" }}
                 whileInView={{ x: "100%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+                viewport={{ once: true, amount: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
                 className="w-full h-full font-serif absolute top-0 left-0 bg-primary text-surface-container-lowest flex items-center justify-center text-4xl font-semibold"
               >
                 {" "}
