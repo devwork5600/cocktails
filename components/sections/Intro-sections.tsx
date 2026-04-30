@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const IntroSections = () => {
   return (
@@ -43,16 +45,22 @@ const IntroSections = () => {
             <div className="relative h-full w-full bg-surface-container-high rounded-md overflow-hidden gold-border">
               {/* We can add another image here if needed, or a moody texture */}
               <Image
-                src="/hero-bg.png"
+                src="/cocktail-2.png"
                 alt=""
                 fill
-                className="opacity-20"
+             
                 quality={100}
               />
-              <div className="w-full h-full absolute top-0 left-0 bg-yellow-400 text-black flex items-center justify-center text-4xl font-semibold">
+              <motion.div
+                initial={{ x: "0%" }}
+                whileInView={{ x: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+                className="w-full h-full font-serif absolute top-0 left-0 bg-primary text-surface-container-lowest flex items-center justify-center text-4xl font-semibold"
+              >
                 {" "}
                 L&apos;Élixir Doré{" "}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
