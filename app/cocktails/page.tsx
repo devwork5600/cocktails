@@ -86,7 +86,7 @@ export default function LaCartePage() {
                   {category.items.map((item) => (
                     <div key={item.name} className="group flex flex-col gap-4">
                       {/* Mobile-only Cocktail Image */}
-                      <div className="lg:hidden relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
+                      <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
                         <Image
                           src="/cocktail-2.png"
                           alt={item.name}
