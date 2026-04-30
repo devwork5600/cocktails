@@ -65,15 +65,19 @@ const categories = [
   }
 ];
 
+// Flatten items to have a stable global list for the slide effect
+const allItems = categories.flatMap(cat => cat.items);
+
 export default function LaCartePage() {
   const { x, y } = useMouse();
-  const [hoveredItem, setHoveredItem] = useState<any>(null);
-  let globalItemIndex = 0;
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen bg-surface">
+      {/* Floating Cursor Modal with Sliding Effect */}
       <AnimatePresence>
-        {hoveredItem && (
+        {isActive && (
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -92,18 +96,26 @@ export default function LaCartePage() {
             }}
             className="hidden lg:block overflow-hidden rounded-xl border border-primary/20 shadow-2xl bg-surface-container"
           >
-            <div className="relative w-full h-full">
-              <Image
-                src={hoveredItem.image || "/cocktail-2.png"}
-                alt={hoveredItem.name}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-center">
-                <p className="text-primary font-serif italic text-lg">{hoveredItem.name}</p>
-              </div>
-            </div>
+            <motion.div 
+              className="relative w-full h-full"
+              animate={{ y: hoveredIndex !== null ? -hoveredIndex * 200 : 0 }}
+              transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.6 }}
+            >
+              {allItems.map((item, idx) => (
+                <div key={`${item.name}-${idx}`} className="relative w-[200px] h-[200px]">
+                  <Image
+                    src={item.image || "/cocktail-2.png"}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-center">
+                    <p className="text-primary font-serif italic text-lg leading-tight">{item.name}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -124,66 +136,80 @@ export default function LaCartePage() {
         {/* Menu Content */}
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex flex-col gap-24">
-            {categories.map((category) => (
-              <div key={category.name} className="flex flex-col gap-12">
-                <div className="flex items-center gap-6">
-                  <h2 className="text-label-caps text-primary tracking-[0.4em] whitespace-nowrap">
-                    {category.name}
-                  </h2>
-                  <div className="h-px w-full bg-outline-variant/30" />
-                </div>
+            {categories.map((category, catIdx) => {
+              // Calculate starting global index for this category
+              let startIndex = 0;
+              for(let i = 0; i < catIdx; i++) {
+                startIndex += categories[i].items.length;
+              }
 
-                <div className="flex flex-col gap-16">
-                  {category.items.map((item) => {
-                    globalItemIndex++;
-                    const displayIndex = globalItemIndex.toString().padStart(2, "0");
-                    
-                    return (
-                      <div 
-                        key={item.name} 
-                        className="group flex flex-col gap-4 lg:cursor-none"
-                        onMouseEnter={() => setHoveredItem(item)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                      >
-                        {/* Mobile-only Cocktail Image */}
-                        <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
-                          <Image
-                            src={item.image || "/cocktail-2.png"}
-                            alt={item.name}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
-                        </div>
+              return (
+                <div key={category.name} className="flex flex-col gap-12">
+                  <div className="flex items-center gap-6">
+                    <h2 className="text-label-caps text-primary tracking-[0.4em] whitespace-nowrap">
+                      {category.name}
+                    </h2>
+                    <div className="h-px w-full bg-outline-variant/30" />
+                  </div>
 
-                        <div className="flex flex-col gap-2">
-                          <div className="flex justify-between items-baseline gap-4">
-                            <div className="flex items-baseline gap-4">
-                              <span className="text-primary font-sans text-sm font-medium opacity-50 group-hover:opacity-100 transition-opacity">
-                                {displayIndex}
-                              </span>
-                              <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                                {item.name}
-                              </h3>
-                            </div>
-                            <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
-                            <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                              {item.price}
-                            </span>
+                  <div 
+                    className="flex flex-col gap-16 lg:cursor-none"
+                    onMouseEnter={() => setIsActive(true)}
+                    onMouseLeave={() => {
+                      setIsActive(false);
+                      setHoveredIndex(null);
+                    }}
+                  >
+                    {category.items.map((item, itemIdx) => {
+                      const globalIdx = startIndex + itemIdx;
+                      const displayIndex = (globalIdx + 1).toString().padStart(2, "0");
+                      
+                      return (
+                        <div 
+                          key={item.name} 
+                          className="group flex flex-col gap-4"
+                          onMouseEnter={() => setHoveredIndex(globalIdx)}
+                        >
+                          {/* Mobile-only Cocktail Image */}
+                          <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
+                            <Image
+                              src={item.image || "/cocktail-2.png"}
+                              alt={item.name}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
                           </div>
-                          <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
-                            {item.description}
-                          </p>
-                          <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
-                            {item.ingredients}
-                          </p>
+
+                          <div className="flex flex-col gap-2">
+                            <div className="flex justify-between items-baseline gap-4">
+                              <div className="flex items-baseline gap-4">
+                                <span className="text-primary font-sans text-sm font-medium opacity-50 group-hover:opacity-100 transition-opacity">
+                                  {displayIndex}
+                                </span>
+                                <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                                  {item.name}
+                                </h3>
+                              </div>
+                              <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
+                              <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                                {item.price}
+                              </span>
+                            </div>
+                            <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
+                              {item.description}
+                            </p>
+                            <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
+                              {item.ingredients}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
