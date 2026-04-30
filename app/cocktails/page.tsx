@@ -102,7 +102,7 @@ export default function LaCartePage() {
               transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.6 }}
             >
               {allItems.map((item, idx) => (
-                <div key={`${item.name}-${idx}`} className="relative w-[200px] h-[200px]">
+                <div key={`${item.name}-${idx}`} className="relative w-50 h-50">
                   <Image
                     src={item.image || "/cocktail-2.png"}
                     alt={item.name}
