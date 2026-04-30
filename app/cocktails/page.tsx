@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const categories = [
   {
     name: "Signatures",
@@ -82,22 +84,35 @@ export default function LaCartePage() {
 
                 <div className="flex flex-col gap-16">
                   {category.items.map((item) => (
-                    <div key={item.name} className="group flex flex-col gap-2">
-                      <div className="flex justify-between items-baseline gap-4">
-                        <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                          {item.name}
-                        </h3>
-                        <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
-                        <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
-                          {item.price}
-                        </span>
+                    <div key={item.name} className="group flex flex-col gap-4">
+                      {/* Mobile-only Cocktail Image */}
+                      <div className="lg:hidden relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
+                        <Image
+                          src="/cocktail-2.png"
+                          alt={item.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
                       </div>
-                      <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
-                        {item.description}
-                      </p>
-                      <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
-                        {item.ingredients}
-                      </p>
+
+                      <div className="flex flex-col gap-2">
+                        <div className="flex justify-between items-baseline gap-4">
+                          <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                            {item.name}
+                          </h3>
+                          <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
+                          <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                            {item.price}
+                          </span>
+                        </div>
+                        <p className="text-body-md text-on-surface-variant font-light leading-relaxed max-w-2xl italic mb-1">
+                          {item.description}
+                        </p>
+                        <p className="text-[12px] font-sans text-on-surface-variant/60 uppercase tracking-widest leading-relaxed">
+                          {item.ingredients}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
