@@ -45,7 +45,7 @@ const AmbianceSection = () => {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 mb-8 md:mb-12 w-full">
           <div className="flex flex-col gap-4">
             <span className="text-label-caps text-primary tracking-[0.3em]">
-              L'Atmosphère
+              L&apos;Atmosphère
             </span>
             <h2 className="text-display-lg text-on-surface">
               Un voyage <br />
@@ -57,12 +57,12 @@ const AmbianceSection = () => {
         <motion.div 
           ref={contentRef}
           style={{ x }} 
-          className="flex gap-4 md:gap-8 px-6 md:px-20"
+          className="flex gap-4 md:gap-8 px-6 md:px-20 w-max"
         >
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative h-[350px] w-[280px] md:h-[450px] md:w-[500px] shrink-0 overflow-hidden rounded-2xl group border border-outline-variant/20 shadow-2xl"
+              className="relative h-87.5 w-70 md:h-112.5 md:w-125 shrink-0 overflow-hidden rounded-2xl group border border-outline-variant/20 shadow-2xl"
             >
               <Image
                 src={image.src}

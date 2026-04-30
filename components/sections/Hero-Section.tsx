@@ -42,9 +42,6 @@ const HeroSection = () => {
             <button className="gold-gradient text-on-primary font-sans text-xs font-bold uppercase tracking-widest px-10 py-5 rounded-md hover:brightness-110 transition-all shadow-2xl">
               Explorer la carte
             </button>
-            <button className="gold-border text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-10 py-5 rounded-md hover:bg-on-surface/5 transition-all">
-              Notre Univers
-            </button>
           </div>
         </motion.div>
       </div>
