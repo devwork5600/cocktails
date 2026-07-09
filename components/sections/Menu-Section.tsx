@@ -29,19 +29,19 @@ export function MenuSection() {
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-end gap-8">
             <div className="flex flex-col gap-4 max-w-2xl">
-              <span className="text-label-caps text-primary tracking-[0.2em]">
+              <span className="text-label-caps text-secondary tracking-[0.2em]">
                 Collections & Créations
               </span>
               <h2 className="text-display-lg text-on-surface">
                 Un voyage <br />
-                <span className="italic">à travers les sens</span>
+                <span className="italic text-secondary">à travers les sens</span>
               </h2>
               <p className="text-body-lg text-on-surface-variant font-light leading-relaxed mt-4">
                 Découvrez notre sélection éphémère. Chaque cocktail est une œuvre d&apos;art,
                 conçue avec des spiritueux rares et des ingrédients sourcés avec le plus grand soin.
               </p>
             </div>
-            <Link href="/cocktails" className="gold-border text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all hidden md:block">
+            <Link href="/cocktails" className="hairline text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all hidden md:block">
               Voir la carte complète
             </Link>
           </div>
@@ -55,17 +55,17 @@ export function MenuSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                className="group relative aspect-4/5 rounded-md overflow-hidden gold-border bg-surface-container"
+                className="group relative aspect-4/5 rounded-md overflow-hidden hairline bg-surface-container"
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className={`object-cover transition-transform duration-700 group-hover:scale-110 ${image.position || "object-center"}`}
+                  className={`object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 ${image.position || "object-center"}`}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <p className="text-display-md text-primary font-serif italic text-2xl">
+                  <p className="text-primary font-serif italic text-2xl">
                     {image.title}
                   </p>
                 </div>
@@ -73,7 +73,7 @@ export function MenuSection() {
             ))}
           </div>
 
-          <Link href="/la-carte" className="gold-border text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all md:hidden w-full text-center">
+          <Link href="/la-carte" className="hairline text-on-surface font-sans text-xs font-bold uppercase tracking-widest px-12 py-5 rounded-md hover:bg-on-surface/5 transition-all md:hidden w-full text-center">
             Voir la carte complète
           </Link>
         </div>

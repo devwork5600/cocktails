@@ -44,12 +44,12 @@ const AmbianceSection = () => {
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 mb-8 md:mb-12 w-full">
           <div className="flex flex-col gap-4">
-            <span className="text-label-caps text-primary tracking-[0.3em]">
+            <span className="text-label-caps text-secondary tracking-[0.3em]">
               L&apos;Atmosphère
             </span>
             <h2 className="text-display-lg text-on-surface">
               Un voyage <br />
-              <span className="italic text-primary">en mouvement</span>
+              <span className="italic text-secondary">en mouvement</span>
             </h2>
           </div>
         </div>
@@ -62,15 +62,15 @@ const AmbianceSection = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative h-87.5 w-70 md:h-112.5 md:w-125 shrink-0 overflow-hidden rounded-2xl group border border-outline-variant/20 shadow-2xl"
+              className="relative h-87.5 w-70 md:h-112.5 md:w-125 shrink-0 overflow-hidden rounded-2xl group hairline shadow-2xl"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+              <div className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
               <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                 <p className="text-label-caps text-white text-xs md:text-sm tracking-widest">
                   {image.alt}

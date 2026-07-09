@@ -5,33 +5,55 @@
   preferredStrategy: 'pseudoelements';
 };
 
+/* Midnight Velvet & Silver
+   Primary   #E2E8F0  silver     — headlines, filled buttons
+   Secondary #6366F1  indigo     — accents, eyebrows, icons
+   Tertiary  #0A0C14  near-black — canvas
+   Neutral   #F8FAFC             — body text */
 @theme {
-  --color-background: #16130b;
-  --color-on-background: #eae1d4;
-  --color-surface: #16130b;
-  --color-surface-bright: #3d392f;
-  --color-surface-container-lowest: #110e07;
-  --color-surface-container-low: #1f1b13;
-  --color-surface-container: #231f17;
-  --color-surface-container-high: #2d2a21;
-  --color-surface-container-highest: #38342b;
-  --color-on-surface: #eae1d4;
-  --color-on-surface-variant: #d0c5af;
-  --color-outline: #99907c;
-  --color-outline-variant: #4d4635;
-  --color-primary: #f2ca50;
-  --color-on-primary: #3c2f00;
-  --color-primary-container: #d4af37;
-  --color-on-primary-container: #554300;
-  --color-secondary: #f4bb92;
-  --color-on-secondary: #4a280a;
-  --color-secondary-container: #653d1e;
-  --color-on-secondary-container: #e1aa82;
-  --color-tertiary: #cececa;
-  --color-on-tertiary: #2f312e;
+  --color-background: #0a0c14;
+  --color-on-background: #f8fafc;
+  --color-surface: #0a0c14;
+  --color-surface-bright: #2a3040;
+  --color-surface-container-lowest: #06080e;
+  --color-surface-container-low: #0e111a;
+  --color-surface-container: #12151f;
+  --color-surface-container-high: #181c28;
+  --color-surface-container-highest: #1f2432;
+  --color-on-surface: #f8fafc;
+  --color-on-surface-variant: #94a0b8;
+  --color-outline: #64748b;
+  --color-outline-variant: #2a3244;
+  --color-primary: #e2e8f0;
+  --color-on-primary: #0a0c14;
+  --color-primary-container: #cbd5e1;
+  --color-on-primary-container: #0a0c14;
+  --color-secondary: #3c78f0;
+  --color-on-secondary: #f8fafc;
+  --color-secondary-container: #312e81;
+  --color-on-secondary-container: #c7d2fe;
+  --color-tertiary: #0a0c14;
+  --color-on-tertiary: #e2e8f0;
 
-  --font-serif: "Noto Serif", serif;
-  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-serif: var(--font-bodoni), "Bodoni Moda", serif;
+  --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
+
+  --text-display-lg: 3rem;
+  --text-display-lg--line-height: 1.05;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-md: 2.5rem;
+  --text-display-md--line-height: 1.1;
+  --text-display-md--letter-spacing: -0.02em;
+  --text-headline-md: 2rem;
+  --text-headline-md--line-height: 1.2;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-title-sm: 1.25rem;
+  --text-title-sm--line-height: 1.4;
+  --text-title-sm--font-weight: 500;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.7;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.7;
 
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
@@ -74,21 +96,6 @@
 }
 
 @layer utilities {
-  .text-display-lg {
-    font-size: 3rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  .text-headline-md {
-    font-size: 2rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .text-title-sm {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    font-weight: 500;
-  }
   .text-label-caps {
     font-size: 0.75rem;
     font-weight: 600;
@@ -97,33 +104,41 @@
   }
 
   .glass {
-    background: rgba(22, 19, 11, 0.45);
+    background: rgba(10, 12, 20, 0.97);
     backdrop-filter: blur(60px) saturate(180%);
     -webkit-backdrop-filter: blur(60px) saturate(180%);
     transform: translateZ(0);
     -webkit-font-smoothing: antialiased;
   }
 
-
-
-  .gold-gradient {
-    background: linear-gradient(135deg, #f2ca50 0%, #d4af37 100%);
+  /* Filled control: silver plate on midnight. */
+  .silver-fill {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   }
 
-  .gold-border {
-    border: 1px solid rgba(212, 175, 55, 0.2);
+  /* Silver at low opacity — the structural hairline used across cards. */
+  .hairline {
+    border: 1px solid rgba(226, 232, 240, 0.12);
   }
 
-   .underline-effect {
-   @apply relative cursor-pointer;
- }
+  .accent-glow {
+    background: radial-gradient(
+      circle at center,
+      rgba(99, 102, 241, 0.12) 0%,
+      transparent 65%
+    );
+  }
 
- .underline-effect::after {
-   content: '';
-   @apply absolute h-px w-0 -bottom-1 left-0 bg-primary transition-all duration-300;
- }
+  .underline-effect {
+    @apply relative cursor-pointer;
+  }
 
- .underline-effect:hover::after {
-   @apply w-full;
- }
+  .underline-effect::after {
+    content: '';
+    @apply absolute h-px w-0 -bottom-1 left-0 bg-primary transition-all duration-300;
+  }
+
+  .underline-effect:hover::after {
+    @apply w-full;
+  }
 }

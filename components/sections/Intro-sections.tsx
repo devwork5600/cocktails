@@ -12,12 +12,14 @@ const IntroSections = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           <div className="lg:w-1/2 flex flex-col gap-8">
-            <span className="text-label-caps text-primary tracking-[0.2em]">
+            <span className="text-label-caps text-secondary tracking-[0.2em]">
               Notre Manifeste
             </span>
             <h2 className="text-display-lg text-on-surface">
               Une quête <br />
-              <span className="italic">d&apos;équilibre & d&apos;audace</span>
+              <span className="italic text-secondary">
+                d&apos;équilibre & d&apos;audace
+              </span>
             </h2>
             <p className="text-body-lg text-on-surface-variant font-light leading-relaxed">
               L&apos;Élixir Doré n&apos;est pas seulement un bar, c&apos;est un
@@ -42,13 +44,13 @@ const IntroSections = () => {
           </div>
 
           <div className="lg:w-1/2 relative aspect-square w-full max-w-md lg:max-w-none">
-            <div className="relative h-full w-full bg-surface-container-high rounded-md overflow-hidden gold-border">
+            <div className="relative h-full w-full bg-surface-container-high rounded-md overflow-hidden hairline">
               {/* We can add another image here if needed, or a moody texture */}
               <Image
                 src="/cocktail-2.png"
                 alt=""
                 fill
-             
+                className="object-cover grayscale"
                 quality={100}
               />
               <motion.div

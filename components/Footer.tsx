@@ -4,7 +4,7 @@ import { Camera, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-surface-container-lowest pt-24 pb-12">
+    <footer className="bg-surface-container-lowest pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand */}
@@ -22,19 +22,19 @@ export function Footer() {
             <div className="flex gap-4 mt-2">
               <Link
                 href="#"
-                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-secondary rounded-md transition-colors hairline"
               >
                 <Camera size={20} />
               </Link>
               <Link
                 href="#"
-                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-secondary rounded-md transition-colors hairline"
               >
                 <MessageCircle size={20} />
               </Link>
               <Link
                 href="#"
-                className="p-3 bg-surface-container hover:bg-surface-container-high text-primary rounded-md transition-colors gold-border"
+                className="p-3 bg-surface-container hover:bg-surface-container-high text-secondary rounded-md transition-colors hairline"
               >
                 <Mail size={20} />
               </Link>
@@ -43,7 +43,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-secondary pl-4">
               Navigation
             </h4>
             <ul className="flex flex-col gap-4">
@@ -68,13 +68,13 @@ export function Footer() {
 
           {/* Contact */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-secondary pl-4">
               Contact
             </h4>
             <ul className="flex flex-col gap-6">
               <li className="flex gap-4 items-start text-on-surface-variant font-light group">
                 <MapPin
-                  className="text-primary shrink-0 transition-transform group-hover:scale-110"
+                  className="text-secondary shrink-0 transition-transform group-hover:scale-110"
                   size={20}
                 />
                 <span className="text-body-md leading-relaxed">
@@ -85,7 +85,7 @@ export function Footer() {
               </li>
               <li className="flex gap-4 items-center text-on-surface-variant font-light group">
                 <Phone
-                  className="text-primary shrink-0 transition-transform group-hover:scale-110"
+                  className="text-secondary shrink-0 transition-transform group-hover:scale-110"
                   size={20}
                 />
                 <span className="text-body-md">+33 (0) 1 23 45 67 89</span>
@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Hours */}
           <div className="flex flex-col gap-8">
-            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-primary pl-4">
+            <h4 className="text-label-caps text-on-surface tracking-widest border-l-2 border-secondary pl-4">
               Horaires
             </h4>
             <ul className="flex flex-col gap-3 text-body-md font-light text-on-surface-variant">
@@ -113,7 +113,7 @@ export function Footer() {
               </li>
               <li className="flex justify-between pt-1">
                 <span>Lundi</span>
-                <span className="text-primary italic">Fermé</span>
+                <span className="text-secondary italic">Fermé</span>
               </li>
             </ul>
           </div>

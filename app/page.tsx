@@ -3,6 +3,7 @@ import { MenuSection } from "@/components/sections/Menu-Section";
 import AmbianceSection from "@/components/sections/Ambiance-Section";
 import Reservation from "@/components/sections/Reservation";
 import IntroSections from "@/components/sections/Intro-sections";
+import ContactSection from "@/components/sections/Contact-Section";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <MenuSection />
         <Reservation />
         <AmbianceSection />
+        <ContactSection />
       </main>
     </div>
   );

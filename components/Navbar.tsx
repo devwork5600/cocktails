@@ -30,7 +30,7 @@ export function Navbar() {
       <nav
         className={cn(
           "border-b border-transparent transition-all duration-500 px-6 sm:px-10 py-6",
-          isScrolled || isMenuOpen ? "backdrop-blur-lg border-amber-300" : "bg-transparent"
+          isScrolled || isMenuOpen ? "glass border-outline-variant" : "bg-tertiary/20"
         )}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -51,7 +51,7 @@ export function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button className="gold-gradient text-on-primary font-sans text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-md hover:brightness-110 transition-all shadow-lg">
+            <button className="silver-fill text-on-primary font-sans text-xs font-bold uppercase tracking-widest px-8 py-3 rounded-md hover:brightness-110 transition-all shadow-lg">
               Réserver
             </button>
           </div>
@@ -84,7 +84,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="backdrop-blur-lg border-b border-amber-300/20 p-8 lg:hidden flex flex-col gap-8 shadow-2xl"
+            className="glass border-b border-outline-variant/60 p-8 lg:hidden flex flex-col gap-8 shadow-2xl"
           >
             {navLinks.map((link) => (
               <Link
@@ -96,7 +96,7 @@ export function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button className="gold-gradient text-on-primary font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-md shadow-lg w-full">
+            <button className="silver-fill text-on-primary font-sans text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-md shadow-lg w-full">
               Réserver une table
             </button>
           </motion.div>

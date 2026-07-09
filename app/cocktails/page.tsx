@@ -94,7 +94,7 @@ export default function LaCartePage() {
               x: "-50%",
               y: "-50%",
             }}
-            className="hidden lg:block overflow-hidden rounded-xl border border-primary/20 shadow-2xl bg-surface-container"
+            className="hidden lg:block overflow-hidden rounded-xl hairline shadow-2xl bg-surface-container"
           >
             <div className="relative w-full h-full overflow-hidden">
               <motion.div 
@@ -126,8 +126,8 @@ export default function LaCartePage() {
         {/* Header */}
         <section className="mb-24">
           <div className="max-w-3xl mx-auto px-6 text-center flex flex-col gap-6">
-            <span className="text-label-caps text-primary tracking-[0.3em]">Édition Été 2026</span>
-            <h1 className="text-display-lg text-on-surface">La Carte <br /><span className="italic text-primary">des Élixirs</span></h1>
+            <span className="text-label-caps text-secondary tracking-[0.3em]">Édition Été 2026</span>
+            <h1 className="text-display-lg text-on-surface">La Carte <br /><span className="italic text-secondary">des Élixirs</span></h1>
             <p className="text-body-lg text-on-surface-variant font-light leading-relaxed">
               Une sélection méticuleuse de spiritueux rares et de créations originales, 
               élaborées pour éveiller vos sens et suspendre le temps.
@@ -160,7 +160,7 @@ export default function LaCartePage() {
                   }}
                 >
                   <div className="flex items-center gap-6">
-                    <h2 className="text-label-caps text-primary tracking-[0.4em] whitespace-nowrap">
+                    <h2 className="text-label-caps text-secondary tracking-[0.4em] whitespace-nowrap">
                       {category.name}
                     </h2>
                     <div className="h-px w-full bg-outline-variant/30" />
@@ -181,12 +181,12 @@ export default function LaCartePage() {
                           }}
                         >
                           {/* Mobile-only Cocktail Image */}
-                          <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg border border-outline-variant/20">
+                          <div className="lg:hidden relative aspect-video w-full rounded-lg overflow-hidden shadow-lg hairline">
                             <Image
                               src={item.image || "/cocktail-2.png"}
                               alt={item.name}
                               fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              className="object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-background/60 to-transparent" />
                           </div>
@@ -194,15 +194,15 @@ export default function LaCartePage() {
                           <div className="flex flex-col gap-2">
                             <div className="flex justify-between items-baseline gap-4">
                               <div className="flex items-baseline gap-4">
-                                <span className="text-primary font-sans text-sm font-medium opacity-50 group-hover:opacity-100 transition-opacity">
+                                <span className="text-secondary font-sans text-sm font-medium opacity-50 group-hover:opacity-100 transition-opacity">
                                   {displayIndex}
                                 </span>
-                                <h3 className="font-serif text-3xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                                <h3 className="font-serif text-3xl text-on-surface group-hover:text-secondary transition-colors duration-300">
                                   {item.name}
                                 </h3>
                               </div>
                               <div className="flex-1 border-b border-dotted border-outline-variant/50 h-px mb-1.5" />
-                              <span className="font-sans text-xl text-on-surface group-hover:text-primary transition-colors duration-300">
+                              <span className="font-sans text-xl text-on-surface group-hover:text-secondary transition-colors duration-300">
                                 {item.price}
                               </span>
                             </div>
@@ -229,7 +229,7 @@ export default function LaCartePage() {
             <p className="text-body-md mb-8">
               L&apos;alcool ne soigne rien, mais il aide à oublier les questions restées sans réponse.&quot;
             </p>
-            <p className="text-label-caps text-primary text-[10px] tracking-[0.2em] not-italic">
+            <p className="text-label-caps text-secondary text-[10px] tracking-[0.2em] not-italic">
               L&apos;abus d&apos;alcool est dangereux pour la santé, à consommer avec modération.
             </p>
           </div>
